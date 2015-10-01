@@ -1,0 +1,14 @@
+index.html.erb
+<%= form_for @user, :url => users_path, :html => { :multipart => true } do |x| %>
+<%= x.file_field :avatar %>
+<%= x.submit :create, data: {disable_with: "Uploading..."} %>
+<% end %> 
+
+<ul>
+<% @users.each do |x| %>
+<li>
+<%= image_tag x.avatar.url(:thumb) %>
+<%= link_to "delete", user_path(x), method: :delete, remote: true, class: "deleter" %>
+</li>
+<% end %>
+</ul>
